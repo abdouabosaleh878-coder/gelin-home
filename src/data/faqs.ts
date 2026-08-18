@@ -5,51 +5,45 @@ export type Faq = {
 
 export const generalFaqs: Faq[] = [
   {
-    question: "Is the hearing assessment really free?",
+    question: "What does Beltone Holding do?",
     answer:
-      "Yes. Every Beltone clinic offers a complimentary hearing assessment with a licensed hearing care professional, with no obligation to purchase anything afterward.",
+      "Beltone Holding is a Cairo-headquartered financial-services group offering investment banking, securities brokerage, asset management, consumer and mortgage finance, leasing and factoring, private equity, real estate, and advisory services across multiple African markets.",
   },
   {
-    question: "How long does a hearing test take?",
+    question: "Where is Beltone Holding listed?",
     answer:
-      "A full in-clinic assessment typically takes 45–60 minutes, including a discussion of your hearing history, the test itself, and a review of your results.",
+      "Beltone Holding trades on the Egyptian Exchange (EGX) under the ticker BTFH. Full share and disclosure information is available on our Investor Relations page.",
   },
   {
-    question: "Do I need a doctor's referral to book an appointment?",
+    question: "How can I get in touch with a specific business line?",
     answer:
-      "No referral is needed. You can book directly with a Beltone clinic online or by phone, and we'll guide you through the next steps.",
+      "Use the contact form on this page and select the relevant topic, or visit the Businesses page to find a direct description of each line of business.",
   },
   {
-    question: "What if I've never worn hearing aids before?",
+    question: "How do I access investor disclosures and financial statements?",
     answer:
-      "That's completely normal, and most of our patients are first-time wearers. Your provider will walk you through every option at your pace, with no pressure to decide on the spot.",
+      "Our Investor Relations page lists financial highlights, regulatory disclosures, and share information. For specific historical filings, please contact our Investor Relations team directly.",
   },
   {
-    question: "How much do Beltone hearing aids cost?",
+    question: "Is Beltone Holding hiring?",
     answer:
-      "Pricing varies by style and technology level, from Essential to Premium. Many insurance plans offer partial coverage, and your local clinic can walk you through financing options during your visit.",
-  },
-  {
-    question: "Can I try hearing aids before committing to buy?",
-    answer:
-      "Yes. Most Beltone clinics offer a trial period so you can experience your hearing aids in daily life before making a final decision.",
+      "We regularly hire across our businesses and markets. Visit the Careers page to see how to apply and learn about life at Beltone Holding.",
   },
 ];
 
 export const contactFaqs: Faq[] = [
   {
-    question: "What's the best way to reach Beltone?",
+    question: "What's the best way to reach Beltone Holding?",
     answer:
-      "For appointment scheduling, we recommend booking online for the fastest response. For general questions, our contact form or clinic phone lines are both great options.",
+      "For investor inquiries, use the Investor Relations contact details. For general business or media inquiries, the contact form on this page is the fastest way to reach the right team.",
   },
   {
-    question: "Do you offer virtual consultations?",
+    question: "Do you have offices outside Egypt?",
     answer:
-      "Select clinics offer virtual introductory consultations. Your in-person hearing assessment will still take place at a clinic to ensure accurate results.",
+      "Yes — Beltone Holding operates across multiple African markets. See the Our Firm page for an overview of our regional presence.",
   },
   {
     question: "How quickly will someone respond to my message?",
-    answer:
-      "Our team typically responds to contact form submissions within one business day.",
+    answer: "Our team typically responds to contact form submissions within one to two business days.",
   },
 ];

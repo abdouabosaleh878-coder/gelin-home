@@ -1,17 +1,16 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/data/products";
-import { articles } from "@/data/articles";
+import { businessLines } from "@/data/business-lines";
+import { newsArticles } from "@/data/news";
 import { siteConfig } from "@/lib/seo";
 
 const staticRoutes = [
   "",
-  "/hearing-aids",
-  "/hearing-test",
-  "/find-a-clinic",
-  "/book-appointment",
-  "/why-beltone",
   "/about",
-  "/hearing-health",
+  "/businesses",
+  "/investor-relations",
+  "/leadership",
+  "/news",
+  "/careers",
   "/contact",
 ];
 
@@ -23,19 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const productEntries: MetadataRoute.Sitemap = products.map((product) => ({
-    url: `${siteConfig.url}/hearing-aids/${product.slug}`,
+  const businessEntries: MetadataRoute.Sitemap = businessLines.map((line) => ({
+    url: `${siteConfig.url}/businesses/${line.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
-  const articleEntries: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `${siteConfig.url}/hearing-health/${article.slug}`,
+  const newsEntries: MetadataRoute.Sitemap = newsArticles.map((article) => ({
+    url: `${siteConfig.url}/news/${article.slug}`,
     lastModified: article.publishedAt,
     changeFrequency: "monthly",
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...productEntries, ...articleEntries];
+  return [...staticEntries, ...businessEntries, ...newsEntries];
 }

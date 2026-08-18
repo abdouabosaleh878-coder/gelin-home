@@ -7,14 +7,14 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        teal: "bg-teal-50 text-teal-800",
+        gold: "bg-gold-50 text-gold-800",
         navy: "bg-navy-50 text-navy-700",
-        sand: "bg-sand-200 text-ink-700",
+        slate: "bg-slate-200 text-ink-700",
         outline: "border border-navy-200 text-navy-700",
       },
     },
     defaultVariants: {
-      variant: "teal",
+      variant: "gold",
     },
   }
 );

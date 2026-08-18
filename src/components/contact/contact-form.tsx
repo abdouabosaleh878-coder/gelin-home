@@ -15,9 +15,9 @@ type FormState = {
   message: string;
 };
 
-const emptyState: FormState = { name: "", email: "", phone: "", topic: "General question", message: "" };
+const emptyState: FormState = { name: "", email: "", phone: "", topic: "General inquiry", message: "" };
 
-const topics = ["General question", "Appointment help", "Product question", "Billing", "Feedback"];
+const topics = ["General inquiry", "Investor relations", "Business inquiry", "Careers", "Media"];
 
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -49,11 +49,12 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-teal-200 bg-teal-50 p-8 text-center" role="status">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-teal-600" aria-hidden="true" />
+      <div className="rounded-2xl border border-gold-200 bg-gold-50 p-8 text-center" role="status">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-gold-600" aria-hidden="true" />
         <h2 className="mt-4 text-2xl font-semibold text-navy-900">Message sent</h2>
         <p className="mt-2 text-base text-ink-600">
-          Thanks, {form.name.split(" ")[0]}. Our team typically responds within one business day.
+          Thanks, {form.name.split(" ")[0]}. Our team typically responds within one to two
+          business days.
         </p>
         <Button
           className="mt-6"
@@ -124,7 +125,7 @@ export function ContactForm() {
             id="contact-topic"
             value={form.topic}
             onChange={(event) => setForm((f) => ({ ...f, topic: event.target.value }))}
-            className="flex h-12 w-full rounded-md border border-navy-200 bg-white px-4 text-base text-ink-900 focus-visible:border-teal-500 focus-visible:outline-none"
+            className="flex h-12 w-full rounded-md border border-navy-200 bg-white px-4 text-base text-ink-900 focus-visible:border-gold-500 focus-visible:outline-none"
           >
             {topics.map((topic) => (
               <option key={topic} value={topic}>

@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Phone, MapPin, Mail, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Breadcrumbs } from "@/components/shared/breadcrumbs";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ContactForm } from "@/components/contact/contact-form";
 import { FaqAccordion } from "@/components/shared/faq-accordion";
-import { CtaButton } from "@/components/shared/cta-button";
 import { contactFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "Contact Beltone | Get in Touch",
+  title: "Contact",
   description:
-    "Contact Beltone with questions about hearing aids, appointments, or your local clinic. Call, message us, or find a clinic near you.",
+    "Contact Beltone Holding for business, investor relations, careers, or media inquiries.",
   alternates: { canonical: "/contact" },
 };
 
@@ -25,7 +24,7 @@ export default function ContactPage() {
               as="h1"
               eyebrow="Contact"
               title="We're here to help"
-              description="Have a question about hearing aids, appointments, or a clinic near you? Reach out and a member of our team will follow up soon."
+              description="Whether you have a question for a specific business line, our investor relations team, or press inquiries, reach out below."
             />
           </div>
         </div>
@@ -35,33 +34,30 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.3fr]">
           <div className="space-y-6">
             <div className="rounded-2xl border border-navy-100 bg-white p-6">
-              <Phone className="h-6 w-6 text-teal-600" aria-hidden="true" />
+              <Phone className="h-6 w-6 text-gold-600" aria-hidden="true" />
               <h2 className="mt-3 text-lg font-semibold text-navy-900">Call us</h2>
-              <a href="tel:18005550182" className="mt-1 block text-lg text-teal-700 hover:underline">
-                1-800-555-0182
+              <a href="tel:+20200000000" className="mt-1 block text-lg text-gold-700 hover:underline">
+                +20 2 0000 0000
               </a>
-              <p className="mt-1 text-sm text-ink-500">Mon–Fri, 8 AM–6 PM local time</p>
+              <p className="mt-1 text-sm text-ink-500">Mon–Fri, 9 AM–5 PM Cairo time</p>
             </div>
             <div className="rounded-2xl border border-navy-100 bg-white p-6">
-              <Mail className="h-6 w-6 text-teal-600" aria-hidden="true" />
+              <Mail className="h-6 w-6 text-gold-600" aria-hidden="true" />
               <h2 className="mt-3 text-lg font-semibold text-navy-900">Email us</h2>
-              <a href="mailto:hello@beltone-demo.com" className="mt-1 block text-lg text-teal-700 hover:underline">
-                hello@beltone-demo.com
+              <a href="mailto:info@beltoneholding-demo.com" className="mt-1 block text-lg text-gold-700 hover:underline">
+                info@beltoneholding-demo.com
               </a>
-              <p className="mt-1 text-sm text-ink-500">We typically reply within one business day</p>
+              <p className="mt-1 text-sm text-ink-500">We typically reply within one to two business days</p>
             </div>
             <div className="rounded-2xl border border-navy-100 bg-white p-6">
-              <MapPin className="h-6 w-6 text-teal-600" aria-hidden="true" />
-              <h2 className="mt-3 text-lg font-semibold text-navy-900">Visit a clinic</h2>
-              <p className="mt-1 text-sm text-ink-500">1,500+ locations nationwide</p>
-              <CtaButton href="/find-a-clinic" variant="link" className="mt-2 px-0">
-                Find a clinic near you
-              </CtaButton>
+              <MapPin className="h-6 w-6 text-gold-600" aria-hidden="true" />
+              <h2 className="mt-3 text-lg font-semibold text-navy-900">Headquarters</h2>
+              <p className="mt-1 text-sm text-ink-500">Cairo, Egypt</p>
             </div>
             <div className="rounded-2xl border border-navy-100 bg-white p-6">
-              <Clock className="h-6 w-6 text-teal-600" aria-hidden="true" />
+              <Clock className="h-6 w-6 text-gold-600" aria-hidden="true" />
               <h2 className="mt-3 text-lg font-semibold text-navy-900">Response time</h2>
-              <p className="mt-1 text-sm text-ink-500">Contact form messages: within 1 business day</p>
+              <p className="mt-1 text-sm text-ink-500">Contact form messages: within 1–2 business days</p>
             </div>
           </div>
 
@@ -74,7 +70,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section id="faq" className="bg-sand-100 py-16">
+      <section id="faq" className="bg-slate-100 py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow="FAQ" title="Frequently asked questions" align="center" className="mx-auto" />
           <div className="mt-10 rounded-2xl border border-navy-100 bg-white px-6 sm:px-8">

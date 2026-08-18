@@ -5,30 +5,30 @@ export type NavLink = {
 };
 
 export const primaryNav: NavLink[] = [
-  { label: "Hearing Aids", href: "/hearing-aids", description: "Explore devices built around your life" },
-  { label: "Hearing Test", href: "/hearing-test", description: "Take our free online hearing check" },
-  { label: "Find a Clinic", href: "/find-a-clinic", description: "Locate a hearing-care expert near you" },
-  { label: "Why Beltone", href: "/why-beltone", description: "Our approach to lifelong hearing care" },
-  { label: "Hearing Health", href: "/hearing-health", description: "Articles and guidance from our experts" },
-  { label: "About", href: "/about", description: "Our story, mission, and people" },
+  { label: "Our Firm", href: "/about", description: "Our story, mission, and presence" },
+  { label: "Businesses", href: "/businesses", description: "Our lines of business across financial services" },
+  { label: "Investor Relations", href: "/investor-relations", description: "Financial highlights, disclosures, and share information" },
+  { label: "Leadership", href: "/leadership", description: "Board of Directors and executive management" },
+  { label: "News", href: "/news", description: "Announcements and media coverage" },
+  { label: "Careers", href: "/careers", description: "Open roles and life at Beltone Holding" },
 ];
 
 export const footerNav = {
-  solutions: [
-    { label: "Hearing Aids", href: "/hearing-aids" },
-    { label: "Hearing Test", href: "/hearing-test" },
-    { label: "Book an Appointment", href: "/book-appointment" },
-    { label: "Find a Clinic", href: "/find-a-clinic" },
-  ],
   company: [
-    { label: "Why Beltone", href: "/why-beltone" },
-    { label: "About Us", href: "/about" },
-    { label: "Hearing Health", href: "/hearing-health" },
-    { label: "Contact", href: "/contact" },
+    { label: "Our Firm", href: "/about" },
+    { label: "Businesses", href: "/businesses" },
+    { label: "Leadership", href: "/leadership" },
+    { label: "Careers", href: "/careers" },
+  ],
+  investors: [
+    { label: "Investor Relations", href: "/investor-relations" },
+    { label: "Financial Highlights", href: "/investor-relations#highlights" },
+    { label: "Disclosures & Announcements", href: "/investor-relations#announcements" },
+    { label: "Share Information", href: "/investor-relations#share-info" },
   ],
   support: [
+    { label: "News", href: "/news" },
     { label: "Contact Us", href: "/contact" },
     { label: "FAQs", href: "/contact#faq" },
-    { label: "Find a Clinic", href: "/find-a-clinic" },
   ],
 };

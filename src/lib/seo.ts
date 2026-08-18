@@ -1,20 +1,19 @@
 export const siteConfig = {
-  name: "Beltone Hearing Care",
-  url: "https://www.beltone-demo.com",
-  phone: "1-800-555-0182",
+  name: "Beltone Holding",
+  url: "https://www.beltoneholding-demo.com",
+  phone: "+20 2 0000 0000",
   description:
-    "Beltone helps you hear more of what matters. Book a free hearing assessment, explore modern hearing aids, and find a hearing-care clinic near you.",
+    "Beltone Holding is a Cairo-headquartered financial-services group listed on the Egyptian Exchange (EGX: BTFH), operating across investment banking, asset management, financing, and advisory businesses in multiple African markets.",
 };
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
   logo: `${siteConfig.url}/icon.svg`,
   description: siteConfig.description,
-  telephone: siteConfig.phone,
-  medicalSpecialty: "Audiology",
+  tickerSymbol: "BTFH",
   sameAs: [],
 };
 
