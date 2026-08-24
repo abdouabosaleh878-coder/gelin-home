@@ -1,19 +1,18 @@
 export const siteConfig = {
-  name: "Beltone Holding",
-  url: "https://www.beltoneholding-demo.com",
-  phone: "+20 2 0000 0000",
+  name: "Current Swim Academy",
+  url: "https://www.currentswimacademy-demo.com",
+  phone: "+1 (512) 555-0100",
   description:
-    "Beltone Holding is a Cairo-headquartered financial-services group listed on the Egyptian Exchange (EGX: BTFH), operating across investment banking, asset management, financing, and advisory businesses in multiple African markets.",
+    "Current Swim Academy offers swim lessons and training for every age and ability across five Austin-area locations — from Parent & Baby Swim to competitive team training and adult fitness.",
 };
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "SportsActivityLocation",
   name: siteConfig.name,
   url: siteConfig.url,
   logo: `${siteConfig.url}/icon.svg`,
   description: siteConfig.description,
-  tickerSymbol: "BTFH",
   sameAs: [],
 };
 

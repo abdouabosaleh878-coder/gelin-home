@@ -17,7 +17,7 @@ type FormState = {
 
 const emptyState: FormState = { name: "", email: "", phone: "", topic: "General inquiry", message: "" };
 
-const topics = ["General inquiry", "Investor relations", "Business inquiry", "Careers", "Media"];
+const topics = ["General inquiry", "Enrollment / trial class", "Program question", "Careers", "Media"];
 
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -49,9 +49,9 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-gold-200 bg-gold-50 p-8 text-center" role="status">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-gold-600" aria-hidden="true" />
-        <h2 className="mt-4 text-2xl font-semibold text-navy-900">Message sent</h2>
+      <div className="rounded-2xl border border-sky-200 bg-sky-50 p-8 text-center" role="status">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-sky-600" aria-hidden="true" />
+        <h2 className="mt-4 text-2xl font-semibold text-aqua-900">Message sent</h2>
         <p className="mt-2 text-base text-ink-600">
           Thanks, {form.name.split(" ")[0]}. Our team typically responds within one to two
           business days.
@@ -125,7 +125,7 @@ export function ContactForm() {
             id="contact-topic"
             value={form.topic}
             onChange={(event) => setForm((f) => ({ ...f, topic: event.target.value }))}
-            className="flex h-12 w-full rounded-md border border-navy-200 bg-white px-4 text-base text-ink-900 focus-visible:border-gold-500 focus-visible:outline-none"
+            className="flex h-12 w-full rounded-md border border-aqua-200 bg-white px-4 text-base text-ink-900 focus-visible:border-sky-500 focus-visible:outline-none"
           >
             {topics.map((topic) => (
               <option key={topic} value={topic}>

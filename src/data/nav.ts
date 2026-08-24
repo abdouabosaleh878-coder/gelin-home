@@ -5,26 +5,26 @@ export type NavLink = {
 };
 
 export const primaryNav: NavLink[] = [
-  { label: "Our Firm", href: "/about", description: "Our story, mission, and presence" },
-  { label: "Businesses", href: "/businesses", description: "Our lines of business across financial services" },
-  { label: "Investor Relations", href: "/investor-relations", description: "Financial highlights, disclosures, and share information" },
-  { label: "Leadership", href: "/leadership", description: "Board of Directors and executive management" },
-  { label: "News", href: "/news", description: "Announcements and media coverage" },
-  { label: "Careers", href: "/careers", description: "Open roles and life at Beltone Holding" },
+  { label: "Our Academy", href: "/about", description: "Our story, coaches, and pools" },
+  { label: "Programs", href: "/programs", description: "Swim lessons and training for every age and level" },
+  { label: "Schedule & Pricing", href: "/schedule", description: "Weekly class times and membership plans" },
+  { label: "Coaches", href: "/coaches", description: "Meet our certified coaching staff" },
+  { label: "News", href: "/news", description: "Academy announcements and swim tips" },
+  { label: "Careers", href: "/careers", description: "Open roles and life at Current Swim Academy" },
 ];
 
 export const footerNav = {
   company: [
-    { label: "Our Firm", href: "/about" },
-    { label: "Businesses", href: "/businesses" },
-    { label: "Leadership", href: "/leadership" },
+    { label: "Our Academy", href: "/about" },
+    { label: "Programs", href: "/programs" },
+    { label: "Coaches", href: "/coaches" },
     { label: "Careers", href: "/careers" },
   ],
-  investors: [
-    { label: "Investor Relations", href: "/investor-relations" },
-    { label: "Financial Highlights", href: "/investor-relations#highlights" },
-    { label: "Disclosures & Announcements", href: "/investor-relations#announcements" },
-    { label: "Share Information", href: "/investor-relations#share-info" },
+  schedule: [
+    { label: "Schedule & Pricing", href: "/schedule" },
+    { label: "Weekly Class Schedule", href: "/schedule#schedule" },
+    { label: "Membership Plans", href: "/schedule#pricing" },
+    { label: "Pool Policies", href: "/schedule#policies" },
   ],
   support: [
     { label: "News", href: "/news" },

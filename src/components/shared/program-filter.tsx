@@ -1,23 +1,23 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { businessLines, businessCategoryFilters, type BusinessCategory } from "@/data/business-lines";
-import { BusinessLineGrid } from "@/components/shared/business-line-grid";
+import { programs, programCategoryFilters, type ProgramCategory } from "@/data/programs";
+import { ProgramGrid } from "@/components/shared/program-grid";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function BusinessLineFilter() {
-  const [active, setActive] = useState<BusinessCategory | "all">("all");
+export function ProgramFilter() {
+  const [active, setActive] = useState<ProgramCategory | "all">("all");
 
   const filtered = useMemo(
-    () => (active === "all" ? businessLines : businessLines.filter((line) => line.category === active)),
+    () => (active === "all" ? programs : programs.filter((program) => program.category === active)),
     [active]
   );
 
   return (
     <div>
-      <div role="group" aria-label="Filter businesses by category" className="flex flex-wrap gap-3">
-        {businessCategoryFilters.map((filter) => (
+      <div role="group" aria-label="Filter programs by category" className="flex flex-wrap gap-3">
+        {programCategoryFilters.map((filter) => (
           <Button
             key={filter.value}
             type="button"
@@ -33,11 +33,11 @@ export function BusinessLineFilter() {
       </div>
 
       <p className="mt-4 text-sm text-ink-500" role="status" aria-live="polite">
-        Showing {filtered.length} of {businessLines.length} businesses
+        Showing {filtered.length} of {programs.length} programs
       </p>
 
       <div className="mt-6">
-        <BusinessLineGrid businesses={filtered} />
+        <ProgramGrid programs={filtered} />
       </div>
     </div>
   );

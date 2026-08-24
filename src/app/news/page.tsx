@@ -5,14 +5,14 @@ import { NewsExplorer } from "@/components/news/news-explorer";
 
 export const metadata: Metadata = {
   title: "News",
-  description: "Announcements, financial results, and market insight from Beltone Holding.",
+  description: "Academy announcements, team results, and swim tips from Current Swim Academy.",
   alternates: { canonical: "/news" },
 };
 
 export default function NewsPage() {
   return (
     <>
-      <section className="border-b border-navy-100 bg-navy-50">
+      <section className="border-b border-aqua-100 bg-aqua-50">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "News" }]} />
           <div className="mt-6 max-w-2xl">
@@ -20,7 +20,7 @@ export default function NewsPage() {
               as="h1"
               eyebrow="News"
               title="Newsroom"
-              description="Company announcements, financial results, market insight, and community initiatives from across Beltone Holding."
+              description="Academy announcements, team results, swim tips, and community updates from across Current Swim Academy."
             />
           </div>
         </div>

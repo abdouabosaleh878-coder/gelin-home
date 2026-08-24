@@ -6,8 +6,8 @@ function Input({ className, type, ...props }: React.InputHTMLAttributes<HTMLInpu
     <input
       type={type}
       className={cn(
-        "flex h-12 w-full rounded-md border border-navy-200 bg-white px-4 text-base text-ink-900 placeholder:text-ink-400",
-        "focus-visible:border-gold-500 focus-visible:outline-none",
+        "flex h-12 w-full rounded-md border border-aqua-200 bg-white px-4 text-base text-ink-900 placeholder:text-ink-400",
+        "focus-visible:border-sky-500 focus-visible:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "aria-[invalid=true]:border-red-500",
         className

@@ -5,42 +5,42 @@ export type Faq = {
 
 export const generalFaqs: Faq[] = [
   {
-    question: "What does Beltone Holding do?",
+    question: "What programs does Current Swim Academy offer?",
     answer:
-      "Beltone Holding is a Cairo-headquartered financial-services group offering investment banking, securities brokerage, asset management, consumer and mortgage finance, leasing and factoring, private equity, real estate, and advisory services across multiple African markets.",
+      "We offer Parent & Baby Swim, Preschool Swim, Youth Learn-to-Swim, Adult Beginner Lessons, Private & Semi-Private Lessons, an Age Group Swim Team, High School & Club Prep Training, Masters Swimming, Aqua Fitness & Water Aerobics, Swim Camps & Clinics, and Lifeguard & Instructor Certification courses. Visit the Programs page for full details on each.",
   },
   {
-    question: "Where is Beltone Holding listed?",
+    question: "What ages do you teach?",
     answer:
-      "Beltone Holding trades on the Egyptian Exchange (EGX) under the ticker BTFH. Full share and disclosure information is available on our Investor Relations page.",
+      "We teach swimmers of every age, starting with guardian-in-the-water classes for infants as young as 6 months, all the way through adult lessons, Masters Swimming, and water aerobics for seniors.",
   },
   {
-    question: "How can I get in touch with a specific business line?",
+    question: "How do I know which class level my child belongs in?",
     answer:
-      "Use the contact form on this page and select the relevant topic, or visit the Businesses page to find a direct description of each line of business.",
+      "Every new swimmer completes a brief skills assessment with a coach before their first session, so we can place them in the right level from day one. You can request an assessment through the Contact page.",
   },
   {
-    question: "How do I access investor disclosures and financial statements?",
+    question: "Do you offer makeup classes?",
     answer:
-      "Our Investor Relations page lists financial highlights, regulatory disclosures, and share information. For specific historical filings, please contact our Investor Relations team directly.",
+      "Yes — see our full makeup and cancellation policy on the Schedule & Pricing page. In general, missed classes can be made up in another class at the same level within the session.",
   },
   {
-    question: "Is Beltone Holding hiring?",
+    question: "Is Current Swim Academy hiring?",
     answer:
-      "We regularly hire across our businesses and markets. Visit the Careers page to see how to apply and learn about life at Beltone Holding.",
+      "We regularly hire swim instructors, lifeguards, and coaches across our locations. Visit the Careers page to see current openings and apply.",
   },
 ];
 
 export const contactFaqs: Faq[] = [
   {
-    question: "What's the best way to reach Beltone Holding?",
+    question: "What's the best way to reach Current Swim Academy?",
     answer:
-      "For investor inquiries, use the Investor Relations contact details. For general business or media inquiries, the contact form on this page is the fastest way to reach the right team.",
+      "For questions about class placement, schedules, or enrollment, the contact form on this page is the fastest way to reach the right team. You can also call your nearest location directly.",
   },
   {
-    question: "Do you have offices outside Egypt?",
+    question: "Do you have more than one pool location?",
     answer:
-      "Yes — Beltone Holding operates across multiple African markets. See the Our Firm page for an overview of our regional presence.",
+      "Yes — we operate five locations across the Austin area. See the Our Academy page for an overview of every location.",
   },
   {
     question: "How quickly will someone respond to my message?",

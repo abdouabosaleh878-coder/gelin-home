@@ -13,8 +13,8 @@ export function NewsTeaser() {
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
             eyebrow="News"
-            title="Latest from Beltone Holding"
-            description="Announcements, financial results, and market insight from across the group."
+            title="Latest from Current Swim Academy"
+            description="Academy announcements, team results, and swim tips from our coaching staff."
           />
           <CtaButton href="/news" variant="outline" className="shrink-0">
             Visit Newsroom

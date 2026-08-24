@@ -3,18 +3,18 @@ export type JobOpening = {
   title: string;
   department: string;
   location: string;
-  type: "Full-time" | "Internship";
+  type: "Full-time" | "Part-time" | "Seasonal";
 };
 
 /**
  * Placeholder openings — replace with live listings from the applicant tracking system.
  */
 export const jobOpenings: JobOpening[] = [
-  { id: "placeholder-1", title: "Investment Banking Analyst", department: "Investment Banking", location: "Cairo, Egypt", type: "Full-time" },
-  { id: "placeholder-2", title: "Equity Research Associate", department: "Securities Brokerage & Research", location: "Cairo, Egypt", type: "Full-time" },
-  { id: "placeholder-3", title: "Credit Risk Analyst", department: "Consumer Finance", location: "Cairo, Egypt", type: "Full-time" },
-  { id: "placeholder-4", title: "Data Scientist", department: "Data Science & AI", location: "Cairo, Egypt", type: "Full-time" },
-  { id: "placeholder-5", title: "Summer Analyst Program", department: "Group-wide", location: "Multiple locations", type: "Internship" },
+  { id: "placeholder-1", title: "Swim Instructor — Youth Programs", department: "Youth Programs", location: "Downtown Austin", type: "Part-time" },
+  { id: "placeholder-2", title: "Competitive Team Assistant Coach", department: "Competitive Teams", location: "Downtown Austin", type: "Full-time" },
+  { id: "placeholder-3", title: "Certified Lifeguard", department: "Aquatics Safety", location: "Multiple locations", type: "Part-time" },
+  { id: "placeholder-4", title: "Aqua Fitness Instructor", department: "Fitness & Wellness", location: "Cedar Park", type: "Part-time" },
+  { id: "placeholder-5", title: "Summer Camp Counselor", department: "Youth Programs", location: "Multiple locations", type: "Seasonal" },
 ];
 
 export type CareerValue = {
@@ -23,8 +23,8 @@ export type CareerValue = {
 };
 
 export const careerValues: CareerValue[] = [
-  { title: "Ownership", description: "We give people real responsibility early, and back their decisions with support." },
-  { title: "Rigor", description: "We hold our analysis, our risk decisions, and our client work to a high standard." },
-  { title: "Regional perspective", description: "We think and build across markets, not just from a single headquarters." },
-  { title: "Long-term thinking", description: "We build careers, client relationships, and businesses meant to last." },
+  { title: "Water safety first", description: "Every decision on deck starts with the safety of the swimmers in front of us." },
+  { title: "Real coaching development", description: "We invest in certification, mentorship, and in-service training so coaches keep growing." },
+  { title: "Patience & encouragement", description: "We look for people who can meet a nervous first-timer and a competitive racer with equal care." },
+  { title: "Team over individual", description: "Our coaches back each other up and share what works across programs and pools." },
 ];
