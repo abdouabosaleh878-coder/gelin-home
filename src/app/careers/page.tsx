@@ -10,14 +10,14 @@ import { Reveal } from "@/components/shared/reveal";
 
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Explore open roles and life at Beltone Holding across our financial-services businesses.",
+  description: "Explore open coaching and lifeguard roles and life at Current Swim Academy.",
   alternates: { canonical: "/careers" },
 };
 
 export default function CareersPage() {
   return (
     <>
-      <section className="border-b border-navy-100 bg-navy-50">
+      <section className="border-b border-aqua-100 bg-aqua-50">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Careers" }]} />
         </div>
@@ -29,14 +29,14 @@ export default function CareersPage() {
             <SectionHeading
               as="h1"
               eyebrow="Careers"
-              title="Build your career across financial services"
-              description="From investment banking to data science, our teams work across markets and business lines. We look for people who want real ownership early in their careers."
+              title="Teach the next generation of swimmers"
+              description="From swim instructors to lifeguards to competitive coaches, our team works across five pools. We look for people who are patient, dependable, and genuinely enjoy the water."
             />
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-navy-100">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-aqua-100">
             <Image
-              src="https://images.unsplash.com/photo-1690378820474-b468b8ee64d3?q=80&w=1000&auto=format&fit=crop"
-              alt="A team collaborating around laptops in a bright modern office"
+              src="https://images.unsplash.com/photo-1541689186060-3b08be2fd22f?q=80&w=1000&auto=format&fit=crop"
+              alt="A coach directing a group swim class from the pool deck"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -53,7 +53,7 @@ export default function CareersPage() {
             {careerValues.map((value, index) => (
               <Reveal key={value.title} delay={index * 70}>
                 <div className="h-full rounded-2xl bg-white p-6 text-center shadow-sm">
-                  <h3 className="text-lg font-semibold text-navy-900">{value.title}</h3>
+                  <h3 className="text-lg font-semibold text-aqua-900">{value.title}</h3>
                   <p className="mt-2 text-base text-ink-500">{value.description}</p>
                 </div>
               </Reveal>
@@ -64,11 +64,11 @@ export default function CareersPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <SectionHeading eyebrow="Open Roles" title="Current openings" />
-        <div className="mt-8 divide-y divide-navy-100 rounded-xl border border-navy-100 bg-white">
+        <div className="mt-8 divide-y divide-aqua-100 rounded-xl border border-aqua-100 bg-white">
           {jobOpenings.map((job) => (
             <div key={job.id} className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h3 className="text-lg font-semibold text-navy-900">{job.title}</h3>
+                <h3 className="text-lg font-semibold text-aqua-900">{job.title}</h3>
                 <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-ink-500">
                   <span className="flex items-center gap-1.5">
                     <Briefcase className="h-4 w-4" aria-hidden="true" />
@@ -81,7 +81,7 @@ export default function CareersPage() {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Badge variant="navy">{job.type}</Badge>
+                <Badge variant="aqua">{job.type}</Badge>
                 <CtaButton href="/contact" icon="none" size="sm" variant="outline">
                   Apply
                 </CtaButton>

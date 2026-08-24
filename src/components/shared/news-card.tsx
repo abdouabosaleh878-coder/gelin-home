@@ -10,7 +10,7 @@ export function NewsCard({ article, featured = false }: { article: NewsArticle; 
     <Card className="group flex h-full flex-col overflow-hidden hover:shadow-lg hover:-translate-y-1">
       <Link
         href={`/news/${article.slug}`}
-        className={`relative block overflow-hidden bg-navy-50 ${featured ? "aspect-[16/9]" : "aspect-[4/3]"}`}
+        className={`relative block overflow-hidden bg-aqua-50 ${featured ? "aspect-[16/9]" : "aspect-[4/3]"}`}
       >
         <Image
           src={article.image}
@@ -21,11 +21,11 @@ export function NewsCard({ article, featured = false }: { article: NewsArticle; 
         />
       </Link>
       <div className="flex flex-1 flex-col p-6">
-        <Badge variant="gold" className="w-fit">
+        <Badge variant="sky" className="w-fit">
           {article.category}
         </Badge>
-        <h3 className={`mt-3 font-semibold text-navy-900 ${featured ? "text-2xl" : "text-lg"}`}>
-          <Link href={`/news/${article.slug}`} className="hover:text-gold-700">
+        <h3 className={`mt-3 font-semibold text-aqua-900 ${featured ? "text-2xl" : "text-lg"}`}>
+          <Link href={`/news/${article.slug}`} className="hover:text-sky-700">
             {article.title}
           </Link>
         </h3>

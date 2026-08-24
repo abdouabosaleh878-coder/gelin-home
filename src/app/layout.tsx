@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -11,7 +11,7 @@ const bodyFont = Inter({
   display: "swap",
 });
 
-const displayFont = Playfair_Display({
+const displayFont = Poppins({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -19,26 +19,26 @@ const displayFont = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.beltoneholding-demo.com"),
+  metadataBase: new URL("https://www.currentswimacademy-demo.com"),
   title: {
-    default: "Beltone Holding | Financial Services Group",
-    template: "%s | Beltone Holding",
+    default: "Current Swim Academy | Swim Lessons for Every Age",
+    template: "%s | Current Swim Academy",
   },
   description:
-    "Beltone Holding is a Cairo-headquartered financial-services group listed on the Egyptian Exchange (EGX: BTFH), spanning investment banking, asset management, financing, and advisory businesses across Africa.",
+    "Current Swim Academy offers swim lessons and training for every age and ability across five Austin-area locations — from Parent & Baby Swim to competitive team training and adult fitness.",
   openGraph: {
-    title: "Beltone Holding | Financial Services Group",
+    title: "Current Swim Academy | Swim Lessons for Every Age",
     description:
-      "A diversified financial-services group across investment banking, asset management, financing, and advisory businesses.",
-    url: "https://www.beltoneholding-demo.com",
-    siteName: "Beltone Holding",
+      "Swim lessons and training for every age and ability, from Parent & Baby Swim to competitive team training and adult fitness.",
+    url: "https://www.currentswimacademy-demo.com",
+    siteName: "Current Swim Academy",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Beltone Holding | Financial Services Group",
+    title: "Current Swim Academy | Swim Lessons for Every Age",
     description:
-      "A diversified financial-services group across investment banking, asset management, financing, and advisory businesses.",
+      "Swim lessons and training for every age and ability, from Parent & Baby Swim to competitive team training and adult fitness.",
   },
 };
 

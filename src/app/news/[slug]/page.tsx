@@ -67,10 +67,10 @@ export default async function NewsArticlePage({
           ]}
         />
 
-        <Badge variant="gold" className="mt-6">
+        <Badge variant="sky" className="mt-6">
           {article.category}
         </Badge>
-        <h1 className="mt-4 text-3xl font-semibold text-navy-900 sm:text-4xl text-balance">
+        <h1 className="mt-4 text-3xl font-semibold text-aqua-900 sm:text-4xl text-balance">
           {article.title}
         </h1>
 
@@ -95,7 +95,7 @@ export default async function NewsArticlePage({
           </span>
         </div>
 
-        <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl bg-navy-50">
+        <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl bg-aqua-50">
           <Image
             src={article.image}
             alt=""
@@ -112,17 +112,17 @@ export default async function NewsArticlePage({
           ))}
         </div>
 
-        <div className="mt-10 rounded-2xl bg-gold-50 p-6 text-center">
-          <p className="text-lg font-medium text-gold-900">Have a question about this story?</p>
+        <div className="mt-10 rounded-2xl bg-sky-50 p-6 text-center">
+          <p className="text-lg font-medium text-sky-900">Have a question about this story?</p>
           <CtaButton href="/contact" icon="none" size="lg" className="mt-4">
             Contact Our Team
           </CtaButton>
         </div>
       </article>
 
-      <section className="border-t border-navy-100 bg-slate-100 py-16">
+      <section className="border-t border-aqua-100 bg-slate-100 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading title="More from Beltone Holding" />
+          <SectionHeading title="More from Current Swim Academy" />
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {related.map((item) => (
               <NewsCard key={item.slug} article={item} />

@@ -3,7 +3,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 
 export function FaqAccordion({ faqs, idPrefix = "faq" }: { faqs: Faq[]; idPrefix?: string }) {
   return (
-    <Accordion type="single" collapsible className="divide-y divide-navy-100">
+    <Accordion type="single" collapsible className="divide-y divide-aqua-100">
       {faqs.map((faq, index) => (
         <AccordionItem key={faq.question} value={`${idPrefix}-${index}`}>
           <AccordionTrigger>{faq.question}</AccordionTrigger>

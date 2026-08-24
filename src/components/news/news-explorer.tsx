@@ -73,8 +73,8 @@ export function NewsExplorer() {
 
       <div className="mt-6">
         {results.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-navy-200 bg-white p-12 text-center">
-            <p className="text-lg font-semibold text-navy-900">No articles match your search</p>
+          <div className="rounded-xl border border-dashed border-aqua-200 bg-white p-12 text-center">
+            <p className="text-lg font-semibold text-aqua-900">No articles match your search</p>
             <p className="mt-2 text-ink-500">Try a different keyword or category.</p>
           </div>
         ) : (

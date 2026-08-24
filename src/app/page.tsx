@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
-import { BusinessesOverview } from "@/components/sections/businesses-overview";
+import { ProgramsOverview } from "@/components/sections/programs-overview";
 import { WhyUs } from "@/components/sections/why-us";
-import { GroupPresence } from "@/components/sections/group-presence";
+import { Locations } from "@/components/sections/locations";
 import { NewsTeaser } from "@/components/sections/news-teaser";
-import { InvestorCta } from "@/components/sections/investor-cta";
+import { TrialCta } from "@/components/sections/trial-cta";
 import { FinalCta } from "@/components/sections/final-cta";
 
 export const metadata: Metadata = {
-  title: "Beltone Holding | Financial Services Group",
+  title: "Current Swim Academy | Swim Lessons for Every Age",
   description:
-    "Beltone Holding is a Cairo-headquartered financial-services group listed on the Egyptian Exchange (EGX: BTFH), spanning investment banking, asset management, financing, and advisory businesses across Africa.",
+    "Current Swim Academy offers swim lessons and training for every age and ability across five Austin-area locations — from Parent & Baby Swim to competitive team training and adult fitness.",
   alternates: { canonical: "/" },
 };
 
@@ -18,11 +18,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <BusinessesOverview />
+      <ProgramsOverview />
       <WhyUs />
-      <GroupPresence />
+      <Locations />
       <NewsTeaser />
-      <InvestorCta />
+      <TrialCta />
       <FinalCta />
     </>
   );

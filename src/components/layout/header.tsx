@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Landmark } from "lucide-react";
+import { Menu, X, Waves } from "lucide-react";
 import { primaryNav } from "@/data/nav";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -26,13 +26,13 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy-100 bg-slate-50/95 backdrop-blur supports-[backdrop-filter]:bg-slate-50/80">
+    <header className="sticky top-0 z-50 border-b border-aqua-100 bg-slate-50/95 backdrop-blur supports-[backdrop-filter]:bg-slate-50/80">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex shrink-0 items-center gap-2 text-navy-900">
-          <span className="flex h-10 w-10 items-center justify-center rounded-md bg-navy-900 text-gold-300">
-            <Landmark className="h-5 w-5" aria-hidden="true" />
+        <Link href="/" className="flex shrink-0 items-center gap-2 text-aqua-900">
+          <span className="flex h-10 w-10 items-center justify-center rounded-md bg-aqua-900 text-sky-300">
+            <Waves className="h-5 w-5" aria-hidden="true" />
           </span>
-          <span className="font-display text-2xl font-semibold">Beltone Holding</span>
+          <span className="font-display text-2xl font-semibold">Current Swim Academy</span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">
@@ -46,7 +46,7 @@ export function Header() {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "rounded-full px-4 py-2 text-base font-medium transition-colors",
-                      active ? "text-gold-700" : "text-navy-800 hover:text-gold-700"
+                      active ? "text-sky-700" : "text-aqua-800 hover:text-sky-700"
                     )}
                   >
                     {link.label}
@@ -59,7 +59,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button asChild size="default" className="hidden sm:inline-flex">
-            <Link href="/contact">Contact Us</Link>
+            <Link href="/contact">Book a Free Trial</Link>
           </Button>
           <Button
             variant="ghost"
@@ -76,14 +76,14 @@ export function Header() {
       </div>
 
       {open ? (
-        <div id="mobile-menu" className="border-t border-navy-100 bg-slate-50 lg:hidden">
+        <div id="mobile-menu" className="border-t border-aqua-100 bg-slate-50 lg:hidden">
           <nav aria-label="Mobile" className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
             <ul className="space-y-1">
               {primaryNav.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block rounded-lg px-3 py-3 text-lg font-medium text-navy-900 hover:bg-navy-50"
+                    className="block rounded-lg px-3 py-3 text-lg font-medium text-aqua-900 hover:bg-aqua-50"
                   >
                     {link.label}
                   </Link>
@@ -91,7 +91,7 @@ export function Header() {
               ))}
             </ul>
             <Button asChild size="lg" className="mt-4 w-full sm:hidden">
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/contact">Book a Free Trial</Link>
             </Button>
           </nav>
         </div>

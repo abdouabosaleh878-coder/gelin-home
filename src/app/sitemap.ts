@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
-import { businessLines } from "@/data/business-lines";
+import { programs } from "@/data/programs";
 import { newsArticles } from "@/data/news";
 import { siteConfig } from "@/lib/seo";
 
 const staticRoutes = [
   "",
   "/about",
-  "/businesses",
-  "/investor-relations",
-  "/leadership",
+  "/programs",
+  "/schedule",
+  "/coaches",
   "/news",
   "/careers",
   "/contact",
@@ -22,8 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  const businessEntries: MetadataRoute.Sitemap = businessLines.map((line) => ({
-    url: `${siteConfig.url}/businesses/${line.slug}`,
+  const programEntries: MetadataRoute.Sitemap = programs.map((program) => ({
+    url: `${siteConfig.url}/programs/${program.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.6,
@@ -36,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...businessEntries, ...newsEntries];
+  return [...staticEntries, ...programEntries, ...newsEntries];
 }
