@@ -1,0 +1,286 @@
+// Gelin Home — e-commerce data model
+//
+// DEV DATABASE: SQLite (zero-infra, works out of the box for local dev / this demo).
+// PRODUCTION: switch `provider` below to "postgresql" and point DATABASE_URL at
+// Postgres (Neon, Supabase, Railway, RDS...), then run `npx prisma migrate deploy`.
+// The schema below intentionally avoids Postgres-only features (native arrays,
+// enums are kept as strings for portability) so the switch is a one-line change.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Admin
+// ---------------------------------------------------------------------------
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Catalog
+// ---------------------------------------------------------------------------
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String?
+  slug        String   @unique
+  description String?
+  descriptionAr String?
+  image       String?
+  sortOrder   Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  products Product[]
+
+  @@index([slug])
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  name             String
+  nameAr           String?
+  slug             String   @unique
+  description      String
+  descriptionAr    String?
+  shortDescription String?
+  shortDescriptionAr String?
+
+  price     Float
+  salePrice Float?
+  sku       String  @unique
+  stock     Int     @default(0)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  material   String?
+  dimensions String?
+
+  // Stored as JSON-encoded string arrays for SQLite portability, e.g.
+  // sizes:  ["S","M","L"]
+  // colors: [{"name":"Ivory","hex":"#F1EAE0"},{"name":"Sand","hex":"#D8C8AE"}]
+  sizes  String @default("[]")
+  colors String @default("[]")
+
+  featured   Boolean @default(false)
+  bestseller Boolean @default(false)
+  newArrival Boolean @default(false)
+  onSale     Boolean @default(false)
+  active     Boolean @default(true)
+  isDemo     Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images     ProductImage[]
+  reviews    Review[]
+  orderItems OrderItem[]
+
+  @@index([categoryId])
+  @@index([slug])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  sortOrder Int     @default(0)
+
+  @@index([productId])
+}
+
+model Review {
+  id           String   @id @default(cuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  customerName String
+  rating       Int
+  comment      String
+  approved     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  @@index([productId])
+}
+
+// ---------------------------------------------------------------------------
+// Customers & Orders
+// ---------------------------------------------------------------------------
+
+model Customer {
+  id        String   @id @default(cuid())
+  fullName  String
+  phone     String   @unique
+  email     String?
+  createdAt DateTime @default(now())
+
+  orders Order[]
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  fullName    String
+  phone       String
+  email       String?
+  governorate String
+  city        String
+  address     String
+  building    String?
+  apartment   String?
+  notes       String?
+
+  subtotal    Float
+  deliveryFee Float  @default(0)
+  total       Float
+
+  // Extensible payment architecture: "cod" today, "card" / "wallet" / etc. later.
+  paymentMethod String @default("cod")
+  paymentStatus String @default("pending") // pending | paid | failed | refunded
+
+  status String @default("PENDING") // PENDING | CONFIRMED | PREPARING | SHIPPED | DELIVERED | CANCELLED
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@index([customerId])
+  @@index([status])
+}
+
+model OrderItem {
+  id      String @id @default(cuid())
+  orderId Int
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId    String?
+  product      Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  productName  String
+  productImage String?
+  size         String?
+  color        String?
+  unitPrice    Float
+  quantity     Int
+  subtotal     Float
+
+  @@index([orderId])
+}
+
+// ---------------------------------------------------------------------------
+// Site content (admin-editable, no code changes required)
+// ---------------------------------------------------------------------------
+
+model HomepageContent {
+  id String @id @default("main")
+
+  heroImage       String  @default("")
+  heroTitleEn     String  @default("Made for Beautiful Living.")
+  heroTitleAr     String  @default("صُنع من أجل حياة أجمل.")
+  heroSubtitleEn  String  @default("Thoughtfully crafted home essentials designed to make everyday spaces feel extraordinary.")
+  heroSubtitleAr  String  @default("قطع منزلية مصنوعة بعناية لتجعل مساحاتك اليومية استثنائية.")
+  heroButtonPrimaryEn   String @default("Shop Collection")
+  heroButtonPrimaryAr   String @default("تسوقي المجموعة")
+  heroButtonSecondaryEn String @default("Discover Gelin Home")
+  heroButtonSecondaryAr String @default("اكتشفي جلين هوم")
+
+  brandStoryTitleEn String @default("Crafted with intention.")
+  brandStoryTitleAr String @default("صُنع بعناية ونية.")
+  brandStoryBodyEn  String @default("At Gelin Home, we believe the smallest details can transform a space. Every collection is selected with an appreciation for quality, comfort and timeless design.")
+  brandStoryBodyAr  String @default("في جلين هوم، نؤمن بأن أدق التفاصيل قادرة على تحويل أي مساحة. نختار كل مجموعة بتقدير للجودة والراحة والتصميم الخالد.")
+  brandStoryImage   String @default("")
+
+  newCollectionTitleEn    String @default("The New Collection")
+  newCollectionTitleAr    String @default("المجموعة الجديدة")
+  newCollectionSubtitleEn String @default("Fresh textures and warm neutrals for the season ahead.")
+  newCollectionSubtitleAr String @default("ملمس جديد وألوان دافئة محايدة لموسم قادم.")
+  newCollectionImage      String @default("")
+
+  newsletterTitleEn    String @default("Join the Gelin Home world.")
+  newsletterTitleAr    String @default("انضمي إلى عالم جلين هوم.")
+  newsletterSubtitleEn String @default("Be the first to know about new collections, private sales and stories from the atelier.")
+  newsletterSubtitleAr String @default("كوني أول من يعلم بمجموعاتنا الجديدة وعروضنا الخاصة.")
+
+  updatedAt DateTime @updatedAt
+}
+
+model InstagramPost {
+  id        String  @id @default(cuid())
+  imageUrl  String
+  link      String  @default("")
+  sortOrder Int     @default(0)
+}
+
+model SiteSettings {
+  id String @id @default("main")
+
+  brandName    String @default("Hand Made Gelin Home")
+  logoUrl      String @default("")
+  faviconUrl   String @default("")
+
+  phone        String @default("+20 100 000 0000")
+  whatsapp     String @default("+20 100 000 0000")
+  email        String @default("hello@gelinhome.com")
+
+  addressEn    String @default("Nasr City, Cairo, Egypt")
+  addressAr    String @default("مدينة نصر، القاهرة، مصر")
+  googleMapsUrl String @default("https://maps.app.goo.gl/RDpJEYgbQjRk5fFH6")
+
+  openingHoursEn String @default("Saturday – Thursday, 10:00 AM – 10:00 PM")
+  openingHoursAr String @default("السبت – الخميس، 10:00 صباحًا – 10:00 مساءً")
+
+  instagram String @default("")
+  facebook  String @default("")
+  tiktok    String @default("")
+
+  deliveryFee   Float  @default(75)
+  freeShippingThreshold Float @default(2000)
+  deliveryInfoEn String @default("Delivery within 2–5 business days across Egypt.")
+  deliveryInfoAr String @default("التوصيل خلال 2-5 أيام عمل داخل مصر.")
+
+  updatedAt DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model PolicyPage {
+  id         String   @id @default(cuid())
+  slug       String   @unique // shipping | returns | privacy | terms
+  titleEn    String
+  titleAr    String
+  contentEn  String
+  contentAr  String
+  updatedAt  DateTime @updatedAt
+}

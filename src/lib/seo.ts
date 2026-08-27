@@ -1,31 +1,60 @@
-export const siteConfig = {
-  name: "Beltone Holding",
-  url: "https://www.beltoneholding-demo.com",
-  phone: "+20 2 0000 0000",
-  description:
-    "Beltone Holding is a Cairo-headquartered financial-services group listed on the Egyptian Exchange (EGX: BTFH), operating across investment banking, asset management, financing, and advisory businesses in multiple African markets.",
-};
+import type { SiteSettings } from "@prisma/client";
+import type { ParsedProduct } from "./products";
+import { effectivePrice } from "./products";
 
-export const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/icon.svg`,
-  description: siteConfig.description,
-  tickerSymbol: "BTFH",
-  sameAs: [],
-};
+export function siteUrl() {
+  return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+}
 
-export function buildBreadcrumbJsonLd(items: { name: string; path: string }[]) {
+export function organizationJsonLd(settings: SiteSettings) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: settings.brandName,
+    url: siteUrl(),
+    logo: settings.logoUrl ? `${siteUrl()}${settings.logoUrl}` : undefined,
+    telephone: settings.phone,
+    email: settings.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: settings.addressEn,
+      addressLocality: "Cairo",
+      addressCountry: "EG",
+    },
+    sameAs: [settings.instagram, settings.facebook, settings.tiktok].filter(Boolean),
+  };
+}
+
+export function productJsonLd(product: ParsedProduct, locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.shortDescription || product.description,
+    sku: product.sku,
+    image: product.imageUrls.map((u) => `${siteUrl()}${u}`),
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "EGP",
+      price: effectivePrice(product),
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      url: `${siteUrl()}/${locale}/products/${product.slug}`,
+    },
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
+    itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
-      position: index + 1,
+      position: i + 1,
       name: item.name,
-      item: `${siteConfig.url}${item.path}`,
+      item: `${siteUrl()}${item.url}`,
     })),
   };
 }
