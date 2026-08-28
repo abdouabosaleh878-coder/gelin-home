@@ -16,6 +16,7 @@ import {
   Settings,
   Sparkles,
   Layers,
+  Scissors,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +27,7 @@ const NAV_ITEMS = [
   { href: "/drafts", label: "Drafts", icon: FileEdit },
   { href: "/published", label: "Published", icon: CheckCircle2 },
   { href: "/batch", label: "Generate 10 Shorts", icon: Layers },
+  { href: "/clip-studio", label: "Clip Studio", icon: Scissors },
   { href: "/templates", label: "Templates", icon: LayoutTemplate },
   { href: "/library", label: "Library", icon: FolderOpen },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },

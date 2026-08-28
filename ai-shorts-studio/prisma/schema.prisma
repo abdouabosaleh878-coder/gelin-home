@@ -29,6 +29,27 @@ enum ShortStatus {
   FAILED
 }
 
+enum ShortSourceType {
+  GENERATED
+  CLIPPED
+}
+
+enum ClipSourceJobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum ClipSourceJobStage {
+  DOWNLOAD_AUDIO
+  ANALYZE
+  DOWNLOAD_CLIPS
+  TRANSCRIBE
+  REFRAME
+  DONE
+}
+
 enum RenderJobStatus {
   QUEUED
   RUNNING
@@ -98,6 +119,7 @@ model User {
   brandKits      BrandKit[]
   socialAccounts SocialAccount[]
   resetTokens    PasswordResetToken[]
+  clipSourceJobs ClipSourceJob[]
 }
 
 model PasswordResetToken {
@@ -113,16 +135,17 @@ model PasswordResetToken {
 // ---------- Core content ----------
 
 model Project {
-  id         String    @id @default(cuid())
-  name       String
-  niche      String?
-  userId     String
-  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  brandKitId String?
-  brandKit   BrandKit? @relation(fields: [brandKitId], references: [id])
-  shorts     Short[]
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id             String          @id @default(cuid())
+  name           String
+  niche          String?
+  userId         String
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  brandKitId     String?
+  brandKit       BrandKit?       @relation(fields: [brandKitId], references: [id])
+  shorts         Short[]
+  clipSourceJobs ClipSourceJob[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
 }
 
 model Short {
@@ -148,6 +171,16 @@ model Short {
   status ShortStatus @default(DRAFT)
   idea   String?
   hook   String?
+
+  // Set when this short was cut from an existing video instead of generated
+  // from a topic idea (see ClipSourceJob).
+  sourceType     ShortSourceType @default(GENERATED)
+  sourceUrl      String?
+  sourceTitle    String?
+  sourceStartSec Float?
+  sourceEndSec   Float?
+  transcript     String?
+  hashtags       String? // JSON string[]
 
   script          Script?
   scenes          Scene[]
@@ -291,6 +324,30 @@ model RenderJob {
   startedAt    DateTime?
   finishedAt   DateTime?
   createdAt    DateTime        @default(now())
+}
+
+model ClipSourceJob {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  sourceUrl       String
+  sourceTitle     String?
+  status          ClipSourceJobStatus @default(QUEUED)
+  stage           ClipSourceJobStage  @default(DOWNLOAD_AUDIO)
+  progress        Int                 @default(0)
+  clipCount       Int                 @default(10)
+  minClipSec      Int                 @default(20)
+  maxClipSec      Int                 @default(60)
+  usedCookies     Boolean             @default(false)
+  errorMessage    String?
+  createdShortIds String? // JSON string[]
+
+  startedAt  DateTime?
+  finishedAt DateTime?
+  createdAt  DateTime  @default(now())
 }
 
 model SocialAccount {

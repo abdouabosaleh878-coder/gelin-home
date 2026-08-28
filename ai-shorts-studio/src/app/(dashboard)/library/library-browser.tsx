@@ -46,12 +46,13 @@ export function LibraryBrowser({ assets, templates, scripts }: { assets: AssetIt
   );
   const filteredScripts = useMemo(
     () =>
-      (filter === "all" || filter === "scripts") &&
-      scripts.filter((s) => s.hook.toLowerCase().includes(query.toLowerCase()) || s.topic.toLowerCase().includes(query.toLowerCase())),
+      filter === "all" || filter === "scripts"
+        ? scripts.filter((s) => s.hook.toLowerCase().includes(query.toLowerCase()) || s.topic.toLowerCase().includes(query.toLowerCase()))
+        : [],
     [scripts, filter, query]
   );
   const filteredTemplates = useMemo(
-    () => (filter === "all" || filter === "templates") && templates.filter((t) => t.name.toLowerCase().includes(query.toLowerCase())),
+    () => (filter === "all" || filter === "templates" ? templates.filter((t) => t.name.toLowerCase().includes(query.toLowerCase())) : []),
     [templates, filter, query]
   );
 

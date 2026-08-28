@@ -51,3 +51,7 @@ next-env.d.ts
 
 # generated media (voiceovers, visuals, renders) — user content, not source
 /storage/
+
+# python (Clip Studio transcription script)
+__pycache__/
+*.pyc
