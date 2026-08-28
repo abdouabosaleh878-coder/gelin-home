@@ -1,0 +1,336 @@
+// AI Shorts Studio — Prisma schema
+// SQLite by default (zero external setup). Swap datasource.provider + DATABASE_URL for Postgres in production.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ---------- Enums ----------
+
+enum Tone {
+  DRAMATIC
+  FUNNY
+  EDUCATIONAL
+  MOTIVATIONAL
+  STORYTELLING
+  LUXURY
+  DOCUMENTARY
+}
+
+enum ShortStatus {
+  DRAFT
+  GENERATING
+  READY
+  FAILED
+}
+
+enum RenderJobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum RenderJobStage {
+  IDEA
+  HOOK
+  SCRIPT
+  SCENES
+  VOICEOVER
+  VISUALS
+  CAPTIONS
+  RENDER
+  THUMBNAIL
+  DONE
+}
+
+enum AssetType {
+  IMAGE
+  VIDEO
+  AUDIO_MUSIC
+  AUDIO_SFX
+  AUDIO_VOICEOVER
+  THUMBNAIL
+  LOGO
+  FONT
+  RENDERED_VIDEO
+}
+
+enum AssetSource {
+  AI_GENERATED
+  STOCK
+  UPLOADED
+  SYSTEM
+}
+
+enum SocialPlatform {
+  YOUTUBE
+  TIKTOK
+  INSTAGRAM
+}
+
+enum CalendarStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  FAILED
+}
+
+// ---------- Auth ----------
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  image        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  projects       Project[]
+  shorts         Short[]
+  assets         Asset[]
+  brandKits      BrandKit[]
+  socialAccounts SocialAccount[]
+  resetTokens    PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  token     String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// ---------- Core content ----------
+
+model Project {
+  id         String    @id @default(cuid())
+  name       String
+  niche      String?
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  brandKitId String?
+  brandKit   BrandKit? @relation(fields: [brandKitId], references: [id])
+  shorts     Short[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Short {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId  String
+  project    Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  templateId String?
+  template   Template? @relation(fields: [templateId], references: [id])
+
+  topic          String
+  niche          String?
+  targetAudience String?
+  lengthSeconds  Int     @default(30)
+  language       String  @default("en")
+  voiceId        String  @default("local-default")
+  tone           Tone    @default(EDUCATIONAL)
+  visualStyle    String  @default("cinematic")
+  captionStyle   String  @default("bold-highlight")
+  musicStyle     String  @default("upbeat")
+
+  status ShortStatus @default(DRAFT)
+  idea   String?
+  hook   String?
+
+  script          Script?
+  scenes          Scene[]
+  renderJobs      RenderJob[]
+  calendarEntry   CalendarEntry?
+  analyticsEvents AnalyticsEvent[]
+
+  musicAssetId      String?
+  musicAsset        Asset?  @relation("ShortMusic", fields: [musicAssetId], references: [id])
+  thumbnailAssetId  String?
+  thumbnailAsset    Asset?  @relation("ShortThumbnail", fields: [thumbnailAssetId], references: [id])
+  finalVideoAssetId String?
+  finalVideoAsset   Asset?  @relation("ShortFinalVideo", fields: [finalVideoAssetId], references: [id])
+
+  errorMessage String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Script {
+  id        String   @id @default(cuid())
+  shortId   String   @unique
+  short     Short    @relation(fields: [shortId], references: [id], onDelete: Cascade)
+  hook      String
+  body      String
+  cta       String
+  fullText  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Scene {
+  id           String  @id @default(cuid())
+  shortId      String
+  short        Short   @relation(fields: [shortId], references: [id], onDelete: Cascade)
+  order        Int
+  durationSec  Float
+  narration    String
+  visualDesc   String
+  onScreenText String?
+  caption      String?
+  transition   String  @default("crossfade")
+  soundEffect  String?
+
+  visualAssetId String?
+  visualAsset   Asset?     @relation("SceneVisual", fields: [visualAssetId], references: [id])
+  voiceoverId   String?
+  voiceover     Voiceover? @relation(fields: [voiceoverId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([shortId, order])
+}
+
+model Voiceover {
+  id          String   @id @default(cuid())
+  provider    String
+  voiceId     String
+  text        String
+  assetId     String?  @unique
+  asset       Asset?   @relation(fields: [assetId], references: [id])
+  durationSec Float?
+  wordTimings String? // JSON: [{ word, startSec, endSec }]
+  scenes      Scene[]
+  createdAt   DateTime @default(now())
+}
+
+model Asset {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type        AssetType
+  source      AssetSource
+  url         String
+  localPath   String?
+  prompt      String?
+  mimeType    String?
+  width       Int?
+  height      Int?
+  durationSec Float?
+  metadata    String? // JSON blob for provider-specific info
+  createdAt   DateTime    @default(now())
+
+  scenesUsingAsVisual Scene[]    @relation("SceneVisual")
+  voiceover           Voiceover?
+  shortsAsMusic       Short[]    @relation("ShortMusic")
+  shortsAsThumbnail   Short[]    @relation("ShortThumbnail")
+  shortsAsFinalVideo  Short[]    @relation("ShortFinalVideo")
+}
+
+// ---------- Templates & branding ----------
+
+model Template {
+  id              String   @id @default(cuid())
+  key             String   @unique
+  name            String
+  category        String
+  description     String
+  scriptStructure String // JSON
+  captionStyle    String
+  visualStyle     String
+  musicStyle      String
+  transitionStyle String
+  isSystem        Boolean  @default(true)
+  shorts          Short[]
+  createdAt       DateTime @default(now())
+}
+
+model BrandKit {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name           String    @default("My Brand")
+  logoUrl        String?
+  primaryColor   String    @default("#7C3AED")
+  secondaryColor String    @default("#0B0B14")
+  fontFamily     String    @default("Inter")
+  captionStyle   String    @default("bold-highlight")
+  introText      String?
+  outroText      String?
+  watermarkText  String?
+  defaultCta     String?
+  projects       Project[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+// ---------- Rendering, publishing, analytics ----------
+
+model RenderJob {
+  id           String          @id @default(cuid())
+  shortId      String
+  short        Short           @relation(fields: [shortId], references: [id], onDelete: Cascade)
+  status       RenderJobStatus @default(QUEUED)
+  stage        RenderJobStage  @default(IDEA)
+  progress     Int             @default(0)
+  logs         String?
+  errorMessage String?
+  attempt      Int             @default(1)
+  startedAt    DateTime?
+  finishedAt   DateTime?
+  createdAt    DateTime        @default(now())
+}
+
+model SocialAccount {
+  id           String         @id @default(cuid())
+  userId       String
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platform     SocialPlatform
+  handle       String?
+  accessToken  String?
+  refreshToken String?
+  connected    Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+
+  @@unique([userId, platform])
+}
+
+model CalendarEntry {
+  id           String          @id @default(cuid())
+  shortId      String          @unique
+  short        Short           @relation(fields: [shortId], references: [id], onDelete: Cascade)
+  status       CalendarStatus  @default(DRAFT)
+  scheduledAt  DateTime?
+  platform     SocialPlatform?
+  publishedAt  DateTime?
+  publishError String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
+
+model AnalyticsEvent {
+  id              String         @id @default(cuid())
+  shortId         String
+  short           Short          @relation(fields: [shortId], references: [id], onDelete: Cascade)
+  platform        SocialPlatform
+  views           Int            @default(0)
+  likes           Int            @default(0)
+  comments        Int            @default(0)
+  shares          Int            @default(0)
+  avgWatchTimeSec Float?
+  completionRate  Float?
+  engagementRate  Float?
+  recordedAt      DateTime       @default(now())
+}

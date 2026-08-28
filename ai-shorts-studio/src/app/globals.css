@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --background: #08080d;
+  --surface: #111118;
+  --surface-2: #17171f;
+  --border: #26262f;
+  --foreground: #f4f4f6;
+  --muted: #9a9aa8;
+  --muted-2: #6b6b78;
+
+  --color-violet-50: #f4f0ff;
+  --color-violet-100: #e6dbff;
+  --color-violet-300: #b298ff;
+  --color-violet-400: #9670ff;
+  --color-violet-500: #7c4dff;
+  --color-violet-600: #6a34f2;
+  --color-violet-700: #5726c9;
+
+  --color-indigo-400: #7c8cff;
+  --color-indigo-500: #5b6bf5;
+
+  --color-fuchsia-400: #f472e0;
+  --color-fuchsia-500: #e34fd0;
+
+  --color-amber-400: #ffc857;
+  --color-amber-500: #f5a623;
+
+  --color-emerald-400: #34e0a1;
+  --color-emerald-500: #1fc98a;
+
+  --color-rose-400: #ff6b81;
+  --color-rose-500: #f43f5e;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+
+  --color-violet-50: var(--color-violet-50);
+  --color-violet-100: var(--color-violet-100);
+  --color-violet-300: var(--color-violet-300);
+  --color-violet-400: var(--color-violet-400);
+  --color-violet-500: var(--color-violet-500);
+  --color-violet-600: var(--color-violet-600);
+  --color-violet-700: var(--color-violet-700);
+
+  --color-indigo-400: var(--color-indigo-400);
+  --color-indigo-500: var(--color-indigo-500);
+  --color-fuchsia-400: var(--color-fuchsia-400);
+  --color-fuchsia-500: var(--color-fuchsia-500);
+  --color-amber-400: var(--color-amber-400);
+  --color-amber-500: var(--color-amber-500);
+  --color-emerald-400: var(--color-emerald-400);
+  --color-emerald-500: var(--color-emerald-500);
+  --color-rose-400: var(--color-rose-400);
+  --color-rose-500: var(--color-rose-500);
+
+  --font-sans: var(--font-inter);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: var(--color-violet-500);
+  color: white;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-violet-400), var(--color-fuchsia-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-violet-500), var(--color-fuchsia-500));
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
